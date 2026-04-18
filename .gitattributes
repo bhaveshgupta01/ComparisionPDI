@@ -1,0 +1,2 @@
+dataset/BindingDB/BindingDB_BindingDB_Articles.tsv filter=lfs diff=lfs merge=lfs -text
+dataset/BindingDB/BindingDB_PDSPKi.tsv filter=lfs diff=lfs merge=lfs -text
