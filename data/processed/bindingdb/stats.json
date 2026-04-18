@@ -1,0 +1,10 @@
+{
+  "n_samples": 3953,
+  "pki_mean": 7.289365169083431,
+  "pki_std": 1.2967186354000708,
+  "pki_min": 3.8239087409443187,
+  "pki_max": 11.221848749616356,
+  "n_unique_drugs": 716,
+  "n_unique_proteins": 152,
+  "smiles_vocab_size": 58
+}

@@ -1,0 +1,3 @@
+# variant_early_concat.yaml
+# Inherits all settings from base.yaml; only variant name differs.
+variant: "early_concat"
