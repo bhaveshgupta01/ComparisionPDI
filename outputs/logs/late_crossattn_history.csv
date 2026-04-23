@@ -1,2 +1,0 @@
-variant,split,seed,epoch,train_loss,lr,time_s,val_mse,val_rmse,val_ci,val_pearson,val_spearman
-late_crossattn,random,42,1,48.42823886871338,0.0,33.27,47.72589763334803,6.908393274369087,0.3333333333333333,-0.27446048752341873,-0.3714285714285715

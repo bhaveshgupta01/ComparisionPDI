@@ -1,6 +1,0 @@
-variant,split,seed,best_val_mse
-early_concat,random,42,1.8553665070344378
-early_crossattn,random,42,1.8137422237428245
-late_concat,random,42,1.8436874965483792
-late_crossattn,random,42,1.7480108293779129
-late_crossattn,random,42,47.72589763334803
