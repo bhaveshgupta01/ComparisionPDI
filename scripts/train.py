@@ -35,24 +35,24 @@ from src.utils.seeds import set_seed
 
 
 # ────────────────────────────────────────────────────────────────────────────
-# Small-model defaults (override via CLI for full-scale runs)
+# Phase A Baseline defaults (override via CLI for sweeps)
 # ────────────────────────────────────────────────────────────────────────────
 DEFAULTS = dict(
-    d_model=64,
-    n_heads=2,
-    n_layers=4,
-    d_ff=128,
+    d_model=128,
+    n_heads=4,
+    n_layers=6,
+    d_ff=512,
     dropout=0.1,
-    max_drug_len=64,
-    max_prot_len=512,
-    head_hidden=128,
+    max_drug_len=100,
+    max_prot_len=1200,
+    head_hidden=256,
     head_dropout=0.2,
     lr=1e-4,
     weight_decay=1e-5,
-    batch_size=32,
-    num_workers=2,
+    batch_size=64,
+    num_workers=4,
     max_epochs=30,
-    patience=5,
+    patience=15,
     grad_clip=1.0,
 )
 
@@ -74,6 +74,11 @@ def parse_args():
     p.add_argument("--epochs", type=int, default=DEFAULTS["max_epochs"])
     p.add_argument("--batch_size", type=int, default=DEFAULTS["batch_size"])
     p.add_argument("--patience", type=int, default=DEFAULTS["patience"])
+    p.add_argument("--lr", type=float, default=DEFAULTS["lr"])
+    p.add_argument("--d_model", type=int, default=DEFAULTS["d_model"])
+    p.add_argument("--n_layers", type=int, default=DEFAULTS["n_layers"])
+    p.add_argument("--n_heads", type=int, default=DEFAULTS["n_heads"])
+    p.add_argument("--dropout", type=float, default=DEFAULTS["dropout"])
     p.add_argument("--vocab_file", default=None,
                    help="Pre-built SMILES vocab JSON. Auto-built if not provided.")
     return p.parse_args()
@@ -151,14 +156,24 @@ def main():
     )
 
     # ── Model ──────────────────────────────────────────────────────────────
+    # Combine DEFAULTS with CLI overrides
+    model_kwargs = {
+        "d_model": args.d_model,
+        "n_heads": args.n_heads,
+        "n_layers": args.n_layers,
+        "d_ff": 4 * args.d_model,  # 4x d_model standard
+        "dropout": args.dropout,
+        "max_drug_len": DEFAULTS["max_drug_len"],
+        "max_prot_len": DEFAULTS["max_prot_len"],
+        "head_hidden": DEFAULTS["head_hidden"],
+        "head_dropout": DEFAULTS["head_dropout"],
+    }
+
     model = build_model(
         args.variant,
         drug_vocab_size=len(smiles_tok.vocab),
         prot_vocab_size=len(prot_tok.vocab),
-        **{k: DEFAULTS[k] for k in [
-            "d_model", "n_heads", "n_layers", "d_ff", "dropout",
-            "max_drug_len", "max_prot_len", "head_hidden", "head_dropout",
-        ]},
+        **model_kwargs
     )
     print(f"[train.py] {model.parameter_summary()}")
 
@@ -167,7 +182,7 @@ def main():
         model=model,
         variant_name=args.variant,
         output_dir=args.output_dir,
-        lr=DEFAULTS["lr"],
+        lr=args.lr,
         weight_decay=DEFAULTS["weight_decay"],
         max_epochs=args.epochs,
         patience=args.patience,

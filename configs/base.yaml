@@ -4,24 +4,24 @@
 # ────────────────────────────────────────────────────────────────────────────
 
 model:
-  d_model: 64           # embedding dimension (vs 128 in full spec)
-  n_heads: 2            # attention heads (vs 4 in full spec)
-  n_layers: 4           # total transformer layers (vs 6 in full spec)
-  d_ff: 128             # FFN hidden dim (vs 512 in full spec)
+  d_model: 128          # embedding dimension (Phase A Baseline)
+  n_heads: 4            # attention heads
+  n_layers: 6           # total transformer layers
+  d_ff: 512             # FFN hidden dim (4x d_model)
   dropout: 0.1
-  max_drug_len: 64      # max SMILES token length (vs 100 in full spec)
-  max_prot_len: 512     # max protein length (vs 1200 in full spec)
-  head_hidden: 128      # prediction head hidden dim (vs 256 in full spec)
+  max_drug_len: 100     # max SMILES token length
+  max_prot_len: 1200    # max protein length
+  head_hidden: 256      # prediction head hidden dim
   head_dropout: 0.2
 
 training:
   lr: 1.0e-4
   weight_decay: 1.0e-5
   max_epochs: 30
-  patience: 5
+  patience: 15
   grad_clip: 1.0
-  batch_size: 32
-  num_workers: 2
+  batch_size: 64
+  num_workers: 4
   seed: 42
 
 data:

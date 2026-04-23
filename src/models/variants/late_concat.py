@@ -1,5 +1,5 @@
 """
-Variant 3 — Late Concatenation
+Variant 4 — Late Concatenation
 ================================
 Strategy: encode drug and protein *independently* through separate encoders,
 then pool each modality and concatenate before the prediction head.
@@ -7,8 +7,8 @@ then pool each modality and concatenate before the prediction head.
 Architecture (§7.8):
     drug_emb  = DrugEmbedding(drug_tokens)
     prot_emb  = ProtEmbedding(prot_tokens)
-    drug_enc  = DrugEncoder(drug_emb)    # 2 layers
-    prot_enc  = ProtEncoder(prot_emb)    # 2 layers  (total = 4)
+    drug_enc  = DrugEncoder(drug_emb)    # deep encoding
+    prot_enc  = ProtEncoder(prot_emb)    # deep encoding
     drug_pool = mean_pool(drug_enc, drug_mask)   # [B, D]
     prot_pool = mean_pool(prot_enc, prot_mask)   # [B, D]
     combined  = concat([drug_pool, prot_pool])   # [B, 2D]
@@ -44,30 +44,34 @@ def _mean_pool(x: Tensor, mask: Tensor) -> Tensor:
 
 
 class LateConcatDTI(BaseDTIModel):
-    """Variant 3: Late Concatenation."""
+    """Variant 4: Late Concatenation."""
 
     def __init__(
         self,
         drug_vocab_size: int,
         prot_vocab_size: int,
-        d_model: int = 64,
-        n_heads: int = 2,
-        n_layers: int = 4,      # split evenly between drug and protein encoders
-        d_ff: int = 128,
+        d_model: int = 128,
+        n_heads: int = 4,
+        n_layers: int = 6,
+        n_layers_drug: int = None,
+        n_layers_prot: int = None,
+        d_ff: int = 512,
         dropout: float = 0.1,
-        max_drug_len: int = 64,
-        max_prot_len: int = 512,
-        head_hidden: int = 128,
+        max_drug_len: int = 100,
+        max_prot_len: int = 1200,
+        head_hidden: int = 256,
         head_dropout: float = 0.2,
     ):
         super().__init__()
-        n_per = max(1, n_layers // 2)
+        # Default to even split if not specified
+        n_d = n_layers_drug if n_layers_drug is not None else n_layers // 2
+        n_p = n_layers_prot if n_layers_prot is not None else n_layers // 2
 
         self.drug_embedding = TokenEmbedding(drug_vocab_size, d_model, max_drug_len, dropout)
         self.prot_embedding = TokenEmbedding(prot_vocab_size, d_model, max_prot_len, dropout)
 
-        self.drug_encoder = TransformerEncoder(n_per, d_model, n_heads, d_ff, dropout)
-        self.prot_encoder = TransformerEncoder(n_per, d_model, n_heads, d_ff, dropout)
+        self.drug_encoder = TransformerEncoder(n_d, d_model, n_heads, d_ff, dropout)
+        self.prot_encoder = TransformerEncoder(n_p, d_model, n_heads, d_ff, dropout)
 
         # Head takes 2*d (concatenated drug + prot pools)
         self.head = PredictionHead(2 * d_model, head_hidden, head_dropout)
