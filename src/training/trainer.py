@@ -225,6 +225,7 @@ class Trainer:
         return compute_all_metrics(y_pred, y_true)
 
     def _save_checkpoint(self, epoch: int, metrics: Dict) -> None:
+        os.makedirs(self.ckpt_dir, exist_ok=True)
         path = os.path.join(self.ckpt_dir, "best_model.pt")
         torch.save(
             {
@@ -237,6 +238,7 @@ class Trainer:
         )
 
     def _append_results_csv(self, row: Dict) -> None:
+        os.makedirs(os.path.dirname(self.results_path), exist_ok=True)
         file_exists = os.path.isfile(self.results_path)
         with open(self.results_path, "a", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=list(row.keys()))
@@ -247,6 +249,7 @@ class Trainer:
     def _save_epoch_log(self, history: List[Dict]) -> None:
         if not history:
             return
+        os.makedirs(self.log_dir, exist_ok=True)
         log_path = os.path.join(self.log_dir, f"{self.variant_name}_history.csv")
         with open(log_path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=list(history[0].keys()))
