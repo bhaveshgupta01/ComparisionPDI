@@ -1,0 +1,35 @@
+# ────────────────────────────────────────────────────────────────────────────
+# base.yaml — Shared small-model hyperparameters
+# Technical Specification §7 (small-model variant for quick comparison)
+# ────────────────────────────────────────────────────────────────────────────
+
+model:
+  d_model: 128          # embedding dimension (Phase A Baseline)
+  n_heads: 4            # attention heads
+  n_layers: 6           # total transformer layers
+  d_ff: 512             # FFN hidden dim (4x d_model)
+  dropout: 0.1
+  max_drug_len: 100     # max SMILES token length
+  max_prot_len: 1200    # max protein length
+  head_hidden: 256      # prediction head hidden dim
+  head_dropout: 0.2
+
+training:
+  lr: 1.0e-4
+  weight_decay: 1.0e-5
+  max_epochs: 30
+  patience: 15
+  grad_clip: 1.0
+  batch_size: 64
+  num_workers: 4
+  seed: 42
+
+data:
+  tsv_path: "dataset/BindingDB/BindingDB_PDSPKi.tsv"
+  processed_dir: "data/processed/bindingdb"
+  split: "random"       # random | cold_drug | cold_target
+  train_frac: 0.80
+  val_frac: 0.10
+
+output:
+  base_dir: "outputs"
