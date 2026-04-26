@@ -1,0 +1,19 @@
+/scratch/tt3124/ComparisionPDI/.venv/bin/python
+Python 3.9.18
+torch: 2.7.1+cu118
+cuda: True
+gpu count: 2
+[seeds] Seed set to 42
+[train.py] 2 GPUs detected → batch_size 64 → 128 (total), num_workers 4 → 8
+[BindingDBKiDataset] Loading dataset/BindingDB/BindingDB_PDSPKi.tsv …
+[BindingDBKiDataset] 27715 raw rows → 21382 valid rows (6333 dropped)
+[train.py] Split 'random': train=17,105 | val=2,138 | test=2,139
+[train.py] EarlyConcatDTI: 1,266,945 trainable parameters
+[Trainer] DataParallel enabled across 2 GPUs: ['NVIDIA A100-SXM4-40GB', 'NVIDIA A100-SXM4-40GB']
+
+────────────────────────────────────────────────────────────
+  Variant : early_concat
+  Device  : cuda  (2 GPU(s) active)
+  Split   : random  |  Seed: 42
+  Params  : 1,266,945
+────────────────────────────────────────────────────────────
