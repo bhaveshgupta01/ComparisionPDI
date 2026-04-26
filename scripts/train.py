@@ -81,12 +81,33 @@ def parse_args():
     p.add_argument("--dropout", type=float, default=DEFAULTS["dropout"])
     p.add_argument("--vocab_file", default=None,
                    help="Pre-built SMILES vocab JSON. Auto-built if not provided.")
+    p.add_argument("--gpus", type=str, default=None,
+                   help="Comma-separated GPU indices to use, e.g. '0,1'. "
+                        "Defaults to all visible CUDA GPUs.")
     return p.parse_args()
 
 
 def main():
     args = parse_args()
     set_seed(args.seed)
+
+    # ── GPU selection ───────────────────────────────────────────────────────
+    if args.gpus is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
+        print(f"[train.py] Restricting to GPUs: {args.gpus}")
+
+    num_gpus = torch.cuda.device_count() if torch.cuda.is_available() else 0
+    if num_gpus > 1:
+        # Scale total batch_size so each GPU sees the configured per-GPU size.
+        # e.g. 2 GPUs × 64 per-GPU = 128 total → DataParallel splits evenly.
+        effective_batch = args.batch_size * num_gpus
+        effective_workers = DEFAULTS["num_workers"] * num_gpus
+        print(f"[train.py] {num_gpus} GPUs detected → "
+              f"batch_size {args.batch_size} → {effective_batch} (total), "
+              f"num_workers {DEFAULTS['num_workers']} → {effective_workers}")
+    else:
+        effective_batch = args.batch_size
+        effective_workers = DEFAULTS["num_workers"]
 
     # ── Tokenizers ─────────────────────────────────────────────────────────
     vocab_file = args.vocab_file
@@ -140,19 +161,21 @@ def main():
 
     train_loader = DataLoader(
         train_set,
-        batch_size=args.batch_size,
+        batch_size=effective_batch,
         shuffle=True,
         collate_fn=collate_fn,
-        num_workers=DEFAULTS["num_workers"],
+        num_workers=effective_workers,
         pin_memory=torch.cuda.is_available(),
+        persistent_workers=effective_workers > 0,
     )
     val_loader = DataLoader(
         val_set,
-        batch_size=args.batch_size * 2,
+        batch_size=effective_batch * 2,
         shuffle=False,
         collate_fn=collate_fn,
-        num_workers=DEFAULTS["num_workers"],
+        num_workers=effective_workers,
         pin_memory=torch.cuda.is_available(),
+        persistent_workers=effective_workers > 0,
     )
 
     # ── Model ──────────────────────────────────────────────────────────────
