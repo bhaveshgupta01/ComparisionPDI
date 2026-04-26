@@ -1,3 +1,14 @@
-pandas==2.0.0
-pytest==7.4.0
-numpy==1.24.0
+# ── Core ML ────────────────────────────────────────────────────────────────
+# Install PyTorch separately for your CUDA version:
+#   CUDA 11.8:  pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cu118
+#   CUDA 12.1:  pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121
+#   CPU only:   pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+torch>=2.1.0
+
+# ── Data & Numerics ─────────────────────────────────────────────────────────
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0          # pearsonr, spearmanr used in metrics.py
+
+# ── Testing ──────────────────────────────────────────────────────────────────
+pytest>=7.4.0
