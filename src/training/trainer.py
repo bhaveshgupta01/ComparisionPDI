@@ -8,6 +8,7 @@ Features:
 - Gradient clipping (§8.4)
 - Best checkpoint saving (lowest val MSE)
 - Per-epoch metric logging to console and CSV
+- Multi-GPU support via DataParallel (auto-detected)
 """
 import csv
 import os
@@ -86,7 +87,18 @@ class Trainer:
             else:
                 device = "cpu"
         self.device = device
-        self.model = model.to(device)
+
+        # ── Multi-GPU via DataParallel ──────────────────────────────────────
+        # When multiple CUDA GPUs are available, wrap the model so each
+        # forward pass is automatically split across all visible GPUs.
+        num_gpus = torch.cuda.device_count() if device == "cuda" else 0
+        self._use_data_parallel = num_gpus > 1
+        model = model.to(device)
+        if self._use_data_parallel:
+            model = nn.DataParallel(model)  # uses all visible CUDA devices
+            print(f"[Trainer] DataParallel enabled across {num_gpus} GPUs: "
+                  f"{[torch.cuda.get_device_name(i) for i in range(num_gpus)]}")
+        self.model = model
 
         self.optimizer = AdamW(
             model.parameters(),
@@ -124,9 +136,10 @@ class Trainer:
         self._best_val_mse = float("inf")
         self._patience_counter = 0
 
+        num_gpus = torch.cuda.device_count() if self.device == "cuda" else 0
         print(f"\n{'─'*60}")
         print(f"  Variant : {self.variant_name}")
-        print(f"  Device  : {self.device}")
+        print(f"  Device  : {self.device}  ({num_gpus} GPU(s) active)")
         print(f"  Split   : {split_name}  |  Seed: {seed}")
         print(f"  Params  : {sum(p.numel() for p in self.model.parameters() if p.requires_grad):,}")
         print(f"{'─'*60}")
@@ -227,10 +240,12 @@ class Trainer:
     def _save_checkpoint(self, epoch: int, metrics: Dict) -> None:
         os.makedirs(self.ckpt_dir, exist_ok=True)
         path = os.path.join(self.ckpt_dir, "best_model.pt")
+        # Unwrap DataParallel before saving so the checkpoint is device-agnostic
+        raw_model = self.model.module if self._use_data_parallel else self.model
         torch.save(
             {
                 "epoch": epoch,
-                "model_state_dict": self.model.state_dict(),
+                "model_state_dict": raw_model.state_dict(),
                 "optimizer_state_dict": self.optimizer.state_dict(),
                 "metrics": metrics,
             },
