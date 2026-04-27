@@ -1,0 +1,52 @@
+/scratch/tt3124/ComparisionPDI/.venv/bin/python
+Python 3.9.18
+torch: 2.7.1+cu118
+cuda: True
+gpu count: 2
+[seeds] Seed set to 42
+[train.py] 2 GPUs detected → batch_size 64 → 128 (total), num_workers 4 → 8
+[BindingDBKiDataset] Loading dataset/BindingDB/BindingDB_PDSPKi.tsv …
+[BindingDBKiDataset] 27715 raw rows → 21382 valid rows (6333 dropped)
+[train.py] Split 'random': train=17,105 | val=2,138 | test=2,139
+[train.py] EarlyCrossAttnDTI: 1,399,553 trainable parameters
+[Trainer] DataParallel enabled across 2 GPUs: ['NVIDIA A100-SXM4-40GB', 'NVIDIA A100-SXM4-40GB']
+
+────────────────────────────────────────────────────────────
+  Variant : early_crossattn
+  Device  : cuda  (2 GPU(s) active)
+  Split   : random  |  Seed: 42
+  Params  : 1,399,553
+────────────────────────────────────────────────────────────
+Ep   1/30 | loss=28.3732 | val_mse=1.7952 | ci=0.5592 | r=0.1481 | lr=6.67e-05 | 67.5s
+Ep   2/30 | loss=2.2348 | val_mse=2.0235 | ci=0.5943 | r=0.2889 | lr=9.99e-05 | 57.3s
+Ep   3/30 | loss=2.0749 | val_mse=1.6880 | ci=0.6102 | r=0.3352 | lr=9.93e-05 | 57.4s
+Ep   4/30 | loss=2.0083 | val_mse=1.7362 | ci=0.6241 | r=0.3725 | lr=9.81e-05 | 57.4s
+Ep   5/30 | loss=1.9258 | val_mse=1.5623 | ci=0.6310 | r=0.3904 | lr=9.63e-05 | 57.3s
+Ep   6/30 | loss=1.9704 | val_mse=1.5201 | ci=0.6359 | r=0.4102 | lr=9.40e-05 | 57.3s
+Ep   7/30 | loss=1.9013 | val_mse=1.6143 | ci=0.6404 | r=0.4208 | lr=9.11e-05 | 57.3s
+Ep   8/30 | loss=1.8707 | val_mse=1.7633 | ci=0.6427 | r=0.4291 | lr=8.77e-05 | 57.3s
+Ep   9/30 | loss=1.8379 | val_mse=1.6436 | ci=0.6471 | r=0.4455 | lr=8.39e-05 | 57.4s
+Ep  10/30 | loss=1.8290 | val_mse=1.4397 | ci=0.6585 | r=0.4705 | lr=7.96e-05 | 57.3s
+Ep  11/30 | loss=1.7622 | val_mse=1.5456 | ci=0.6644 | r=0.4871 | lr=7.50e-05 | 57.3s
+Ep  12/30 | loss=1.7488 | val_mse=1.5060 | ci=0.6657 | r=0.4948 | lr=7.01e-05 | 57.4s
+Ep  13/30 | loss=1.7082 | val_mse=1.4578 | ci=0.6687 | r=0.4965 | lr=6.49e-05 | 57.3s
+Ep  14/30 | loss=1.6969 | val_mse=1.3852 | ci=0.6746 | r=0.5135 | lr=5.96e-05 | 57.4s
+Ep  15/30 | loss=1.7011 | val_mse=1.5076 | ci=0.6791 | r=0.5242 | lr=5.41e-05 | 57.3s
+Ep  16/30 | loss=1.6259 | val_mse=1.4023 | ci=0.6807 | r=0.5275 | lr=4.86e-05 | 57.3s
+Ep  17/30 | loss=1.6425 | val_mse=1.4647 | ci=0.6838 | r=0.5364 | lr=4.31e-05 | 57.4s
+Ep  18/30 | loss=1.5911 | val_mse=1.3975 | ci=0.6846 | r=0.5387 | lr=3.77e-05 | 57.3s
+Ep  19/30 | loss=1.5875 | val_mse=1.2764 | ci=0.6918 | r=0.5547 | lr=3.25e-05 | 57.3s
+Ep  20/30 | loss=1.5642 | val_mse=1.2782 | ci=0.6951 | r=0.5616 | lr=2.74e-05 | 57.4s
+Ep  21/30 | loss=1.5603 | val_mse=1.3240 | ci=0.6970 | r=0.5680 | lr=2.27e-05 | 57.3s
+Ep  22/30 | loss=1.5325 | val_mse=1.3212 | ci=0.6974 | r=0.5690 | lr=1.82e-05 | 57.3s
+Ep  23/30 | loss=1.5323 | val_mse=1.2768 | ci=0.6987 | r=0.5720 | lr=1.42e-05 | 57.3s
+Ep  24/30 | loss=1.5367 | val_mse=1.2449 | ci=0.6987 | r=0.5728 | lr=1.05e-05 | 57.4s
+Ep  25/30 | loss=1.5281 | val_mse=1.2540 | ci=0.7006 | r=0.5763 | lr=7.40e-06 | 57.3s
+Ep  26/30 | loss=1.5226 | val_mse=1.2632 | ci=0.7000 | r=0.5763 | lr=4.78e-06 | 57.3s
+Ep  27/30 | loss=1.4936 | val_mse=1.2800 | ci=0.7008 | r=0.5781 | lr=2.71e-06 | 57.4s
+Ep  28/30 | loss=1.4945 | val_mse=1.2766 | ci=0.7010 | r=0.5784 | lr=1.21e-06 | 57.3s
+Ep  29/30 | loss=1.5017 | val_mse=1.2864 | ci=0.7013 | r=0.5791 | lr=3.03e-07 | 57.3s
+Ep  30/30 | loss=1.4739 | val_mse=1.2866 | ci=0.7013 | r=0.5791 | lr=0.00e+00 | 57.3s
+  [Trainer] Epoch log saved → outputs/logs/early_crossattn_history.csv
+
+[train.py] Done. Results → outputs/results/results.csv
