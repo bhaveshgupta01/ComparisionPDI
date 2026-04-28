@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+late_crossattn,cold_drug,42,1.6111110821482
