@@ -9,6 +9,12 @@ set -e
 cd /scratch/$USER/ComparisionPDI
 mkdir -p logs outputs/sweeps/late_crossattn
 
+# ──────────── Ensure environment is ready ────────────
+if [ ! -d ".venv" ]; then
+    echo "==> Environment (.venv) not found. Running setup_venv.sh …"
+    bash hpc_late_crossattn/setup_venv.sh
+fi
+
 SBATCH=hpc_late_crossattn/run_late_crossattn_sweep.sbatch
 
 echo "==> Submitting Phase A sweep for late_crossattn …"
