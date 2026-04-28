@@ -76,13 +76,43 @@ class BindingDBKiDataset(Dataset):
         self.prot_tok = protein_tokenizer
 
         print(f"[BindingDBKiDataset] Loading {tsv_path} …")
-        df = pd.read_csv(
-            tsv_path,
-            sep="\t",
-            usecols=[COL_SMILES, COL_PROT, COL_KI],
-            nrows=max_rows,
-            low_memory=False,
-        )
+        # Try to read with auto-detection if tab fails, or just be very careful with whitespace
+        try:
+            df = pd.read_csv(
+                tsv_path,
+                sep="\t",
+                nrows=max_rows,
+                low_memory=False,
+            )
+            # Strip any accidental whitespace from column names
+            df.columns = df.columns.str.strip()
+            
+            # Check if required columns exist
+            missing = [c for c in [COL_SMILES, COL_PROT, COL_KI] if c not in df.columns]
+            if missing:
+                raise ValueError(f"Missing columns: {missing}")
+                
+            # Filter to just the columns we need
+            df = df[[COL_SMILES, COL_PROT, COL_KI]]
+            
+        except Exception as e:
+            print(f"[BindingDBKiDataset] Error loading TSV with tab separator: {e}")
+            print("[BindingDBKiDataset] Attempting auto-detection of delimiter …")
+            df = pd.read_csv(
+                tsv_path,
+                sep=None,
+                engine="python",
+                nrows=max_rows,
+            )
+            df.columns = df.columns.str.strip()
+            
+            missing = [c for c in [COL_SMILES, COL_PROT, COL_KI] if c not in df.columns]
+            if missing:
+                print(f"[BindingDBKiDataset] Available columns: {list(df.columns)[:10]} ...")
+                raise ValueError(
+                    f"Required columns {missing} not found in {tsv_path}. "
+                    f"Check if the file is a valid BindingDB TSV."
+                )
 
         n_raw = len(df)
         # Drop rows with missing essential fields
