@@ -1,17 +1,17 @@
 #!/bin/bash
 # ==============================================================================
-# Phase A Sweep Submitter — Late Concat (V4)
-# Submits ~20 sbatch jobs; each runs one config of late_concat.
-# Run from /scratch/$USER/ComparisionPDI/hpc_late_concat/
+# Phase A Sweep Submitter — Late Cross-Attention
+# Submits ~20 sbatch jobs; each runs one config of late_crossattn.
+# Run from /scratch/$USER/ComparisionPDI/hpc_late_crossattn/
 # ==============================================================================
 set -e
 
 cd /scratch/$USER/ComparisionPDI
-mkdir -p logs outputs/sweeps/late_concat
+mkdir -p logs outputs/sweeps/late_crossattn
 
-SBATCH=hpc_late_concat/run_late_concat_sweep.sbatch
+SBATCH=hpc_late_crossattn/run_late_crossattn_sweep.sbatch
 
-echo "==> Submitting Phase A sweep for late_concat …"
+echo "==> Submitting Phase A sweep for late_crossattn …"
 echo
 
 # ──────────── Round 0 — Baseline ────────────
@@ -47,7 +47,7 @@ sbatch "$SBATCH" h2        --n_heads 2
 sbatch "$SBATCH" h8        --n_heads 8
 
 # ──────────── Round 7 — Seed sanity on baseline (3 runs) ────────────
-# Note: results will go into outputs/sweeps/seed{42|123|456}/
+# Note: results will go into outputs/sweeps/late_crossattn/seed{42|123|456}/
 sbatch "$SBATCH" seed42    --seed 42
 sbatch "$SBATCH" seed123   --seed 123
 sbatch "$SBATCH" seed456   --seed 456
@@ -57,5 +57,5 @@ sbatch "$SBATCH" cold_drug    --split cold_drug
 sbatch "$SBATCH" cold_target  --split cold_target
 
 echo
-echo "==> Submitted Phase A sweep."
+echo "==> Submitted Phase A sweep for late_crossattn."
 echo "==> Total: ~22 jobs. Monitor with:  squeue -u \$USER"

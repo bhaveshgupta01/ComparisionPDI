@@ -4,12 +4,12 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=8
-#SBATCH --time=0:45:00
+#SBATCH --time=1:00:00
 #SBATCH --mem=32GB
 #SBATCH --gres=gpu:1
-#SBATCH --job-name=lc-a100
-#SBATCH --output=logs/lc_a100_%j.out
-#SBATCH --error=logs/lc_a100_%j.err
+#SBATCH --job-name=lca-a100
+#SBATCH --output=logs/lca_a100_%j.out
+#SBATCH --error=logs/lca_a100_%j.err
 
 TAG="${1:-untagged}"
 shift
@@ -23,13 +23,14 @@ echo "==================== ENV ===================="
 which python && python --version
 python -c "import torch; print('torch:', torch.__version__, '| cuda:', torch.cuda.is_available(), '| gpu:', torch.cuda.get_device_name(0))"
 echo "==================== RUN ===================="
-echo "Tag:  $TAG"
-echo "Args: $@"
+echo "Tag:      $TAG"
+echo "Variant:  late_crossattn"
+echo "Args:     $@"
 echo "============================================="
 
 python scripts/train.py \
-    --variant late_concat \
-    --output_dir "outputs/sweeps/late_concat/${TAG}" \
+    --variant late_crossattn \
+    --output_dir "outputs/sweeps/late_crossattn/${TAG}" \
     "$@"
 
 echo "==================== DONE ===================="
