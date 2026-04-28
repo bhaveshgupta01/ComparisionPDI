@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+early_crossattn,random,456,1.4222791712739462
