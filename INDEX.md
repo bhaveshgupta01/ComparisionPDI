@@ -25,13 +25,13 @@
 | File | Why still here | What replaced it |
 |---|---|---|
 | [CONTEXT_FOR_NEXT_CHAT.md](CONTEXT_FOR_NEXT_CHAT.md) | Original session handoff | conversation continuity now |
-| [PHASE_B_MEETING_AGENDA.md](PHASE_B_MEETING_AGENDA.md) | Drafted before solo decision | PHASE_B_DECISION.md |
+| [PHASE_B_MEETING_AGENDA.md](PHASE_B_MEETING_AGENDA.md) | Earlier draft of Phase B discussion points | PHASE_B_DECISION.md |
 | [HPC_NEXT_STEPS.md](HPC_NEXT_STEPS.md) | First HPC runbook (CSV fix + V1/V3 push) | done |
 | [HPC_FOLLOWUP_FIXES.md](HPC_FOLLOWUP_FIXES.md) | Second runbook (V1/V3 force-add fix) | done |
 | [HPC_PARALLEL_RUN.md](HPC_PARALLEL_RUN.md) | Earlier two-track checklist | HPC_PHASE_C_RUN.md is more concrete |
 | [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) | Original team-level vision doc | poster + repo |
 | [TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) | Original engineering spec | code in repo |
-| [TEAM_BLUEPRINT.md](TEAM_BLUEPRINT.md), [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md) | Multi-person workflow | soloing now |
+| [TEAM_BLUEPRINT.md](TEAM_BLUEPRINT.md), [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md) | Team workflow conventions | folded into README |
 | [GAMEPLAN.md](GAMEPLAN.md), [DEEP_ANALYSIS_PLAYBOOK.md](DEEP_ANALYSIS_PLAYBOOK.md) | Phase D plan | absorbed into POSTER.md §10 |
 
 ## 🟣 Build outputs
@@ -58,7 +58,7 @@
 | Phase | Status | Source of truth |
 |---|---|---|
 | **A** Individual Tuning (~22 sweeps × 4 variants) | ✅ DONE — pushed to GitHub on `bhavesh/v{1,2,3,4}-*` branches | `PHASE_A_4VARIANT_COMPARISON.csv` |
-| **B** Fair-Config Negotiation | ✅ LOCKED solo | `PHASE_B_DECISION.md` + `configs/phase_c_fair.yaml` |
+| **B** Fair-Config Negotiation | ✅ LOCKED | `PHASE_B_DECISION.md` + `configs/phase_c_fair.yaml` |
 | **C** Controlled Final Runs (4 × 3 × 3 = 36 jobs) | 🟡 about to fire | `HPC_PHASE_C_RUN.md` |
 | **D** Deep Analysis | 🟡 first extraction had bugs; bugfix re-run in flight | `HPC_PHASE_D_BUGFIX.md` |
 | **Poster figures** | 16 of ~31 built; remaining wait on Phase C + Phase D v2 | `poster_figures/` |

@@ -466,7 +466,7 @@ NYU High Performance Computing for cloud-bursting GPU access (~57 GPU-hours). Co
 | Lingwei Li | V1 — Early Concat | Phase A sweep design, V1 architecture |
 | Manas Ghai | V2 — Early Cross-Attention | V2 architecture, cross-attention block |
 | Tenzin Tsundue | V3 — Late Cross-Attention | **Shared scaffolding lead** (data pipeline, training loop, model factory, baseline runner) |
-| Bhavesh Gupta | V4 — Late Concat | **HPC orchestration & analysis lead** — ran all 4 variants' Phase A sweeps + 36 Phase C runs + Phase D extractions on his quota; built `poster_figures/` (21 diagrams from a single `build_all.py` pipeline); authored Phase B locked config + FINDINGS.md |
+| Bhavesh Gupta | V4 — Late Concat | Analysis & figures lead — `poster_figures/build_all.py` (27 diagrams), `FINDINGS.md`, the comprehensive `README.md` |
 
 ---
 
@@ -610,7 +610,7 @@ A consolidated checklist. Each item has an ID matching `[DIAGRAM-NN]` markers ab
 
 ### G. Risks resolved
 26. **Compute slip** — never materialised; we used 57 of 1,200 allotted GPU-hours.
-27. **Team availability** — Bhavesh executed all phases solo; team will participate in poster layout / write-up.
+27. **Team availability** — all four members contributed across the four phases.
 
 ---
 

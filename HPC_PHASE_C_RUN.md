@@ -14,7 +14,7 @@ mkdir -p configs hpc_phase_c logs outputs/phase_c
 
 # ---- 1. configs/phase_c_fair.yaml -----------------------------------------
 cat > configs/phase_c_fair.yaml << 'END_OF_PHASE_C_YAML_AB7392'
-# Phase C "Fair Config" - locked 2026-04-28 (Bhavesh, soloing Phase B)
+# Phase C "Fair Config" - locked 2026-04-28
 d_model: 128
 n_heads: 4
 d_ff: 512

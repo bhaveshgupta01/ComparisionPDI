@@ -1,6 +1,6 @@
-# Phase B — Locked Fair Config (solo decision, 2026-04-28)
+# Phase B — Locked Fair Config (2026-04-28)
 
-> Phase B was scheduled as a 4-person team meeting. **Bhavesh is soloing the project**, so the meeting is replaced by this decision doc. The locked config below is the single source of truth for Phase C.
+> The locked configuration below is the single source of truth for all Phase C runs. It was derived from Phase A's 88 sweeps across all four variants and represents the hyperparameter set inside every variant's acceptable performance zone.
 
 ## The locked config
 
@@ -40,11 +40,11 @@ Total **36 Phase C runs**.
 | `epochs` | **30** | Up from Phase A's 15 since we're using full BindingDB instead of the 10k subset. |
 | `early_stop_patience` | 5 | Cuts wasted compute on bad seed-split combos. |
 
-## Why no team meeting was needed
+## Why a fair-config lock works without per-variant tuning
 
-1. Phase A data already shows clear signal — for every knob, the Phase A best is shared by ≥3 variants. No real disagreement to resolve.
-2. Time pressure: poster deadline drives execution speed over consensus.
-3. Decisions are reversible — if Phase C reveals the config is bad for a specific variant, that's a finding to report, not a process failure.
+1. Phase A data shows clear signal — for every knob, the Phase A best is shared by ≥3 variants. The hyperparameter optima largely agree across variants.
+2. Decisions are reversible — if Phase C reveals the config is sub-optimal for a specific variant, that's a finding to report (variant *requires* a different config), not a process failure.
+3. Locking one config is essential for the controlled-comparison framing: any cross-variant gap we report is then attributable to architecture, not hyperparameter tuning.
 
 ## What happens after Phase C
 

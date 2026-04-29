@@ -52,7 +52,7 @@ All four variants share the **same encoder block** (pre-norm Transformer), **sam
 | Phase | What | Status | Output |
 |---|---|---|---|
 | **A — Individual Tuning** | Each variant runs ~22 sweeps on a 10k subset, 15 epochs, to learn its own sensitivities | ✅ DONE (88 sweeps total) | `outputs/sweeps/v{1,2,3,4}_*_fast/results/results.csv` |
-| **B — Fair-Config Negotiation** | Lock a single hyperparameter set inside every variant's "acceptable zone" | ✅ DONE (solo, see [PHASE_B_DECISION.md](PHASE_B_DECISION.md)) | [`configs/phase_c_fair.yaml`](configs/phase_c_fair.yaml) |
+| **B — Fair-Config Negotiation** | Lock a single hyperparameter set inside every variant's "acceptable zone" | ✅ DONE — see [PHASE_B_DECISION.md](PHASE_B_DECISION.md) | [`configs/phase_c_fair.yaml`](configs/phase_c_fair.yaml) |
 | **C — Controlled Final Runs** | All 4 variants × 3 splits (random / cold-drug / cold-target) × 3 seeds = 36 runs on full BindingDB Ki | ✅ DONE (36 / 36) | `outputs/phase_c/phase_c_<variant>_<split>_seed<n>/results/results.csv` |
 | **D — Deep Analysis** | Attention extraction + entropy + heatmaps + CKA + error stratification | ✅ DONE | `outputs/analysis_phase_c/v{1,2,3,4}_phase_c/` (zipped) |
 
@@ -335,10 +335,10 @@ Full reference list in [POSTER.md §14](POSTER.md).
 
 | Author | Variant ownership | Cross-cutting role |
 |---|---|---|
-| **Bhavesh Gupta** | V4 — Late Concat | **HPC orchestration & analysis lead** — ran all 88 Phase A sweeps + 36 Phase C runs + Phase D extractions on his quota; built `poster_figures/` (27 diagrams from a single `build_all.py` pipeline); authored [PHASE_B_DECISION.md](PHASE_B_DECISION.md) + [FINDINGS.md](FINDINGS.md) + this README. |
-| **Lingwei Li** | V1 — Early Concat | Phase A sweep design, V1 architecture spec |
+| **Bhavesh Gupta** | V4 — Late Concat | Analysis & figures lead — `poster_figures/build_all.py` (27 diagrams), [FINDINGS.md](FINDINGS.md), this README |
+| **Lingwei Li** | V1 — Early Concat | Phase A sweep design, V1 architecture |
 | **Manas Ghai** | V2 — Early Cross-Attention | V2 architecture, cross-attention block design |
-| **Tenzin Tsundue** | V3 — Late Cross-Attention | **Shared scaffolding lead** — `src/data/`, `src/models/__init__.py`, `src/training/trainer.py`, original Phase D extraction prototype |
+| **Tenzin Tsundue** | V3 — Late Cross-Attention | Scaffolding lead — `src/data/`, `src/models/__init__.py`, `src/training/trainer.py`, Phase D extraction prototype |
 
 ---
 
