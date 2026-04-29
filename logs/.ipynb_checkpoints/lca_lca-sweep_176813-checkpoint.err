@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/scratch/tt3124/ComparisionPDI/scripts/train.py", line 220, in <module>
+    main()
+  File "/scratch/tt3124/ComparisionPDI/scripts/train.py", line 214, in main
+    trainer.train(train_loader, val_loader, split_name=args.split, seed=args.seed)
+  File "/scratch/tt3124/ComparisionPDI/src/training/trainer.py", line 149, in train
+    train_loss = self._train_epoch(train_loader)
+  File "/scratch/tt3124/ComparisionPDI/src/training/trainer.py", line 211, in _train_epoch
+    preds = self.model(drug_tokens, drug_mask, prot_tokens, prot_mask)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/src/models/variants/late_crossattn.py", line 87, in forward
+    prot_enc = self.prot_encoder(prot_emb, key_padding_mask=prot_mask)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/src/models/encoders.py", line 87, in forward
+    x = layer(x, key_padding_mask=key_padding_mask)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/src/models/encoders.py", line 52, in forward
+    attn_out, attn_w = self.self_attn(
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/modules/activation.py", line 1241, in forward
+    attn_output, attn_output_weights = F.multi_head_attention_forward(
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/functional.py", line 5442, in multi_head_attention_forward
+    attn_output_weights = softmax(attn_output_weights, dim=-1)
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/nn/functional.py", line 1858, in softmax
+    ret = input.softmax(dim)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.75 GiB. GPU 0 has a total capacity of 22.03 GiB of which 1.02 GiB is free. Including non-PyTorch memory, this process has 21.01 GiB memory in use. Of the allocated memory 20.33 GiB is allocated by PyTorch, and 466.56 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

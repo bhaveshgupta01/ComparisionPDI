@@ -1,0 +1,58 @@
+==================== ENV ====================
+/scratch/tt3124/ComparisionPDI/.venv/bin/python
+Python 3.9.18
+torch: 2.2.0+cu121
+cuda: True
+gpu: NVIDIA L4
+==================== RUN ====================
+Tag:      cold_drug
+Variant:  late_crossattn
+Args:     --split cold_drug
+=============================================
+[seeds] Seed set to 42
+[BindingDBKiDataset] Loading dataset/BindingDB/BindingDB_PDSPKi.tsv …
+[BindingDBKiDataset] 27715 raw rows → 21382 valid rows (6333 dropped)
+[train.py] Split 'cold_drug': train=17,029 | val=2,357 | test=1,996
+[train.py] LateCrossAttnDTI: 1,432,065 trainable parameters
+
+────────────────────────────────────────────────────────────
+  Variant : late_crossattn
+  Device  : cuda  (1 GPU(s) active)
+  Split   : cold_drug  |  Seed: 42
+  Params  : 1,432,065
+────────────────────────────────────────────────────────────
+Ep   1/30 | loss=22.7880 | val_mse=1.8740 | ci=0.5162 | r=0.0443 | lr=6.67e-05 | 166.9s
+Ep   2/30 | loss=2.1402 | val_mse=2.4721 | ci=0.5307 | r=0.0875 | lr=9.99e-05 | 161.4s
+Ep   3/30 | loss=2.0552 | val_mse=1.8665 | ci=0.5236 | r=0.0659 | lr=9.93e-05 | 161.9s
+Ep   4/30 | loss=1.9777 | val_mse=1.9938 | ci=0.5221 | r=0.0607 | lr=9.81e-05 | 162.0s
+Ep   5/30 | loss=1.8915 | val_mse=1.9158 | ci=0.5345 | r=0.1081 | lr=9.63e-05 | 162.1s
+Ep   6/30 | loss=1.8756 | val_mse=2.2097 | ci=0.5385 | r=0.1255 | lr=9.40e-05 | 162.0s
+Ep   7/30 | loss=1.7842 | val_mse=1.8604 | ci=0.5513 | r=0.1443 | lr=9.11e-05 | 162.0s
+Ep   8/30 | loss=1.7455 | val_mse=1.8615 | ci=0.5352 | r=0.1047 | lr=8.77e-05 | 162.0s
+Ep   9/30 | loss=1.7230 | val_mse=1.8482 | ci=0.5435 | r=0.1310 | lr=8.39e-05 | 162.0s
+Ep  10/30 | loss=1.6920 | val_mse=1.8883 | ci=0.5437 | r=0.1357 | lr=7.96e-05 | 162.0s
+Ep  11/30 | loss=1.6402 | val_mse=1.8500 | ci=0.5434 | r=0.1419 | lr=7.50e-05 | 162.0s
+Ep  12/30 | loss=1.6135 | val_mse=1.8563 | ci=0.5453 | r=0.1526 | lr=7.01e-05 | 162.0s
+Ep  13/30 | loss=1.5513 | val_mse=1.9022 | ci=0.5437 | r=0.1575 | lr=6.49e-05 | 162.0s
+Ep  14/30 | loss=1.5258 | val_mse=1.8668 | ci=0.5534 | r=0.1747 | lr=5.96e-05 | 162.0s
+Ep  15/30 | loss=1.5258 | val_mse=1.8280 | ci=0.5524 | r=0.1691 | lr=5.41e-05 | 162.0s
+Ep  16/30 | loss=1.4666 | val_mse=1.8205 | ci=0.5656 | r=0.2214 | lr=4.86e-05 | 162.0s
+Ep  17/30 | loss=1.4471 | val_mse=1.9119 | ci=0.5687 | r=0.2089 | lr=4.31e-05 | 162.0s
+Ep  18/30 | loss=1.4326 | val_mse=1.8569 | ci=0.5656 | r=0.2249 | lr=3.77e-05 | 162.0s
+Ep  19/30 | loss=1.3872 | val_mse=1.8465 | ci=0.5674 | r=0.2062 | lr=3.25e-05 | 162.0s
+Ep  20/30 | loss=1.3637 | val_mse=1.8564 | ci=0.5650 | r=0.2061 | lr=2.74e-05 | 162.0s
+Ep  21/30 | loss=1.3484 | val_mse=1.8095 | ci=0.5691 | r=0.2216 | lr=2.26e-05 | 162.1s
+Ep  22/30 | loss=1.3260 | val_mse=1.7736 | ci=0.5745 | r=0.2370 | lr=1.82e-05 | 162.0s
+Ep  23/30 | loss=1.3089 | val_mse=1.8548 | ci=0.5717 | r=0.2292 | lr=1.42e-05 | 162.0s
+Ep  24/30 | loss=1.2985 | val_mse=1.8649 | ci=0.5729 | r=0.2242 | lr=1.05e-05 | 162.0s
+Ep  25/30 | loss=1.3110 | val_mse=1.8695 | ci=0.5739 | r=0.2307 | lr=7.40e-06 | 162.0s
+Ep  26/30 | loss=1.2973 | val_mse=1.8364 | ci=0.5746 | r=0.2315 | lr=4.78e-06 | 162.0s
+Ep  27/30 | loss=1.2862 | val_mse=1.8518 | ci=0.5771 | r=0.2399 | lr=2.71e-06 | 162.0s
+Ep  28/30 | loss=1.2699 | val_mse=1.8448 | ci=0.5772 | r=0.2398 | lr=1.21e-06 | 162.0s
+Ep  29/30 | loss=1.2847 | val_mse=1.8328 | ci=0.5778 | r=0.2430 | lr=3.03e-07 | 162.0s
+Ep  30/30 | loss=1.2909 | val_mse=1.8354 | ci=0.5777 | r=0.2423 | lr=0.00e+00 | 161.9s
+  [Trainer] Epoch log saved → outputs/sweeps/late_crossattn/cold_drug/logs/late_crossattn_history.csv
+
+[train.py] Done. Results → outputs/sweeps/late_crossattn/cold_drug/results/results.csv
+==================== DONE ====================
+Results:  outputs/sweeps/late_crossattn/cold_drug/
