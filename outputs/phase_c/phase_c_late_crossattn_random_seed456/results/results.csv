@@ -1,0 +1,3 @@
+variant,split,seed,best_val_mse
+late_crossattn,random,456,1.060349047644519
+late_crossattn,random,456,1.060349047644519

@@ -1,0 +1,3 @@
+variant,split,seed,best_val_mse
+late_crossattn,cold_target,42,1.4975216650511365
+late_crossattn,cold_target,42,1.4975216650511365
