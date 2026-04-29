@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+early_concat,random,123,1.2030680112271726

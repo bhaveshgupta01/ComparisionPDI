@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/scratch/tt3124/ComparisionPDI/scripts/train.py", line 220, in <module>
+    main()
+  File "/scratch/tt3124/ComparisionPDI/scripts/train.py", line 214, in main
+    trainer.train(train_loader, val_loader, split_name=args.split, seed=args.seed)
+  File "/scratch/tt3124/ComparisionPDI/src/training/trainer.py", line 149, in train
+    train_loss = self._train_epoch(train_loader)
+  File "/scratch/tt3124/ComparisionPDI/src/training/trainer.py", line 213, in _train_epoch
+    loss.backward()
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/scratch/tt3124/ComparisionPDI/.venv/lib/python3.9/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.62 GiB. GPU 0 has a total capacity of 39.49 GiB of which 882.38 MiB is free. Including non-PyTorch memory, this process has 38.62 GiB memory in use. Of the allocated memory 37.93 GiB is allocated by PyTorch, and 196.54 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

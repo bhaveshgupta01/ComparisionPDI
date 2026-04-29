@@ -1,0 +1,58 @@
+==================== ENV ====================
+/scratch/tt3124/ComparisionPDI/.venv/bin/python
+Python 3.9.18
+torch: 2.2.0+cu121
+cuda: True
+gpu: NVIDIA A100-SXM4-40GB
+==================== RUN ====================
+Tag:      lr3e4
+Variant:  early_concat
+Args:     --lr 3e-4
+=============================================
+[seeds] Seed set to 42
+[BindingDBKiDataset] Loading dataset/BindingDB/BindingDB_PDSPKi.tsv …
+[BindingDBKiDataset] 27715 raw rows → 21382 valid rows (6333 dropped)
+[train.py] Split 'random': train=17,105 | val=2,138 | test=2,139
+[train.py] EarlyConcatDTI: 1,266,945 trainable parameters
+
+────────────────────────────────────────────────────────────
+  Variant : early_concat
+  Device  : cuda  (1 GPU(s) active)
+  Split   : random  |  Seed: 42
+  Params  : 1,266,945
+────────────────────────────────────────────────────────────
+Ep   1/30 | loss=13.9127 | val_mse=1.7146 | ci=0.5905 | r=0.2737 | lr=2.00e-04 | 115.4s
+Ep   2/30 | loss=2.1562 | val_mse=1.7635 | ci=0.6094 | r=0.3435 | lr=3.00e-04 | 108.2s
+Ep   3/30 | loss=2.0781 | val_mse=1.5823 | ci=0.6195 | r=0.3733 | lr=2.98e-04 | 108.2s
+Ep   4/30 | loss=1.9948 | val_mse=1.5253 | ci=0.6390 | r=0.4215 | lr=2.94e-04 | 108.2s
+Ep   5/30 | loss=1.9097 | val_mse=1.6018 | ci=0.6478 | r=0.4375 | lr=2.89e-04 | 108.1s
+Ep   6/30 | loss=1.8431 | val_mse=1.4766 | ci=0.6554 | r=0.4595 | lr=2.82e-04 | 108.1s
+Ep   7/30 | loss=1.7791 | val_mse=1.4498 | ci=0.6552 | r=0.4626 | lr=2.73e-04 | 108.2s
+Ep   8/30 | loss=1.7305 | val_mse=1.5014 | ci=0.6754 | r=0.5109 | lr=2.63e-04 | 108.2s
+Ep   9/30 | loss=1.6785 | val_mse=1.3295 | ci=0.6807 | r=0.5289 | lr=2.52e-04 | 108.2s
+Ep  10/30 | loss=1.6328 | val_mse=1.3594 | ci=0.6803 | r=0.5246 | lr=2.39e-04 | 108.1s
+Ep  11/30 | loss=1.5875 | val_mse=1.3326 | ci=0.6838 | r=0.5314 | lr=2.25e-04 | 108.1s
+Ep  12/30 | loss=1.5412 | val_mse=1.3208 | ci=0.6927 | r=0.5583 | lr=2.10e-04 | 108.2s
+Ep  13/30 | loss=1.4766 | val_mse=1.3584 | ci=0.6916 | r=0.5561 | lr=1.95e-04 | 108.2s
+Ep  14/30 | loss=1.4584 | val_mse=1.2423 | ci=0.6982 | r=0.5692 | lr=1.79e-04 | 108.1s
+Ep  15/30 | loss=1.4110 | val_mse=1.1811 | ci=0.7074 | r=0.5920 | lr=1.62e-04 | 108.1s
+Ep  16/30 | loss=1.3750 | val_mse=1.1960 | ci=0.7133 | r=0.6088 | lr=1.46e-04 | 108.1s
+Ep  17/30 | loss=1.3352 | val_mse=1.1389 | ci=0.7181 | r=0.6168 | lr=1.29e-04 | 108.1s
+Ep  18/30 | loss=1.3249 | val_mse=1.0868 | ci=0.7230 | r=0.6355 | lr=1.13e-04 | 108.1s
+Ep  19/30 | loss=1.2773 | val_mse=1.0747 | ci=0.7294 | r=0.6493 | lr=9.74e-05 | 108.1s
+Ep  20/30 | loss=1.2402 | val_mse=1.0549 | ci=0.7325 | r=0.6541 | lr=8.23e-05 | 108.1s
+Ep  21/30 | loss=1.2100 | val_mse=1.0415 | ci=0.7350 | r=0.6623 | lr=6.80e-05 | 108.1s
+Ep  22/30 | loss=1.1809 | val_mse=1.0057 | ci=0.7406 | r=0.6768 | lr=5.46e-05 | 108.1s
+Ep  23/30 | loss=1.1532 | val_mse=0.9994 | ci=0.7414 | r=0.6777 | lr=4.25e-05 | 108.1s
+Ep  24/30 | loss=1.1362 | val_mse=0.9992 | ci=0.7410 | r=0.6766 | lr=3.16e-05 | 108.1s
+Ep  25/30 | loss=1.1306 | val_mse=0.9774 | ci=0.7462 | r=0.6874 | lr=2.22e-05 | 108.1s
+Ep  26/30 | loss=1.1132 | val_mse=0.9704 | ci=0.7469 | r=0.6897 | lr=1.43e-05 | 108.1s
+Ep  27/30 | loss=1.0870 | val_mse=0.9658 | ci=0.7459 | r=0.6875 | lr=8.13e-06 | 108.1s
+Ep  28/30 | loss=1.0981 | val_mse=0.9735 | ci=0.7470 | r=0.6895 | lr=3.63e-06 | 108.1s
+Ep  29/30 | loss=1.0901 | val_mse=0.9722 | ci=0.7465 | r=0.6888 | lr=9.10e-07 | 108.1s
+Ep  30/30 | loss=1.0962 | val_mse=0.9719 | ci=0.7465 | r=0.6887 | lr=0.00e+00 | 108.1s
+  [Trainer] Epoch log saved → outputs/sweeps/early_concat/lr3e4/logs/early_concat_history.csv
+
+[train.py] Done. Results → outputs/sweeps/early_concat/lr3e4/results/results.csv
+==================== DONE ====================
+Results:  outputs/sweeps/early_concat/lr3e4/
