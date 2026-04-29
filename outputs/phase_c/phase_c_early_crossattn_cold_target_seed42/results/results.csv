@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+early_crossattn,cold_target,42,1.0061116270462809
