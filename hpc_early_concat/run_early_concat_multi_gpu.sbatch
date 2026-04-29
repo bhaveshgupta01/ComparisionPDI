@@ -7,13 +7,13 @@
 #   sbatch run_early_concat_multi_gpu.sbatch <tag> <per_gpu_batch> <extra_args...>
 # ==============================================================================
 #SBATCH --account=csci_ga_2565-2026sp
-#SBATCH --partition=g2-standard-24
+#SBATCH --partition=c12m85-a100-2     # Requesting the 2-GPU A100 partition
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=16
 #SBATCH --time=4:00:00
-#SBATCH --mem=64GB
-#SBATCH --gres=gpu:2
+#SBATCH --mem=128GB                   # High system memory
+#SBATCH --gres=gpu:2                  # 2x A100 GPUs (80GB-160GB total VRAM)
 #SBATCH --job-name=ec-mgpu
 #SBATCH --output=logs/ec_mgpu_%x_%j.out
 #SBATCH --error=logs/ec_mgpu_%x_%j.err
