@@ -1,0 +1,13 @@
+variant,split,seed,best_val_mse
+early_concat,random,123,0.980778135570242
+early_concat,random,42,0.9670869000504259
+early_concat,random,456,1.0163066872715014
+early_crossattn,random,123,0.921650228814389
+early_crossattn,random,42,0.8875132208781982
+early_crossattn,random,456,0.9221099992051104
+late_concat,random,123,1.0021923646761992
+late_concat,random,42,0.9341226821877919
+late_concat,random,456,0.9772891914704516
+late_crossattn,random,123,0.9758743373513588
+late_crossattn,random,42,0.9021176243265414
+late_crossattn,random,456,0.9684168602928624

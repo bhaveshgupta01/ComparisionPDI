@@ -1,0 +1,240 @@
+{
+  "variant": "early_crossattn",
+  "baseline_mse": 1.7361383438110352,
+  "layer_ablations": [
+    {
+      "module": "cross_attn.drug_attends_protein",
+      "ablated_mse": 1.6894494593143463,
+      "delta": -0.04668888449668884
+    },
+    {
+      "module": "cross_attn.protein_attends_drug",
+      "ablated_mse": 1.654529333114624,
+      "delta": -0.08160901069641113
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "ablated_mse": 1.7714030742645264,
+      "delta": 0.03526473045349121
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "ablated_mse": 1.5761638879776,
+      "delta": -0.15997445583343506
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "ablated_mse": 1.6243335008621216,
+      "delta": -0.11180484294891357
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "ablated_mse": 1.5969127416610718,
+      "delta": -0.13922560214996338
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "ablated_mse": 1.5928413569927216,
+      "delta": -0.1432969868183136
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "ablated_mse": 1.6801388561725616,
+      "delta": -0.05599948763847351
+    }
+  ],
+  "head_ablations": [
+    {
+      "module": "cross_attn.drug_attends_protein",
+      "head": 0,
+      "ablated_mse": 1.6893616914749146,
+      "delta": -0.046776652336120605
+    },
+    {
+      "module": "cross_attn.drug_attends_protein",
+      "head": 1,
+      "ablated_mse": 1.7279787063598633,
+      "delta": -0.008159637451171875
+    },
+    {
+      "module": "cross_attn.drug_attends_protein",
+      "head": 2,
+      "ablated_mse": 1.7403388619422913,
+      "delta": 0.0042005181312561035
+    },
+    {
+      "module": "cross_attn.drug_attends_protein",
+      "head": 3,
+      "ablated_mse": 1.6753412783145905,
+      "delta": -0.0607970654964447
+    },
+    {
+      "module": "cross_attn.protein_attends_drug",
+      "head": 0,
+      "ablated_mse": 1.7177875339984894,
+      "delta": -0.018350809812545776
+    },
+    {
+      "module": "cross_attn.protein_attends_drug",
+      "head": 1,
+      "ablated_mse": 1.559567630290985,
+      "delta": -0.17657071352005005
+    },
+    {
+      "module": "cross_attn.protein_attends_drug",
+      "head": 2,
+      "ablated_mse": 1.6246504187583923,
+      "delta": -0.11148792505264282
+    },
+    {
+      "module": "cross_attn.protein_attends_drug",
+      "head": 3,
+      "ablated_mse": 1.7068529725074768,
+      "delta": -0.02928537130355835
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 1.8170465230941772,
+      "delta": 0.08090817928314209
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 1.7544317543506622,
+      "delta": 0.018293410539627075
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.5481076538562775,
+      "delta": -0.1880306899547577
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.7747098207473755,
+      "delta": 0.03857147693634033
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 0,
+      "ablated_mse": 1.563844233751297,
+      "delta": -0.17229411005973816
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 1,
+      "ablated_mse": 1.584738701581955,
+      "delta": -0.1513996422290802
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 2,
+      "ablated_mse": 1.6053182184696198,
+      "delta": -0.1308201253414154
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 3,
+      "ablated_mse": 1.6764635741710663,
+      "delta": -0.05967476963996887
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 0,
+      "ablated_mse": 1.6665907204151154,
+      "delta": -0.0695476233959198
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 1,
+      "ablated_mse": 1.7257987558841705,
+      "delta": -0.010339587926864624
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 2,
+      "ablated_mse": 1.7100036442279816,
+      "delta": -0.02613469958305359
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 3,
+      "ablated_mse": 1.6821279227733612,
+      "delta": -0.05401042103767395
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 0,
+      "ablated_mse": 1.6653483510017395,
+      "delta": -0.07078999280929565
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 1,
+      "ablated_mse": 1.6765424311161041,
+      "delta": -0.05959591269493103
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 2,
+      "ablated_mse": 1.7107499837875366,
+      "delta": -0.025388360023498535
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 3,
+      "ablated_mse": 1.7009486556053162,
+      "delta": -0.035189688205718994
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 0,
+      "ablated_mse": 1.6960748136043549,
+      "delta": -0.0400635302066803
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 1,
+      "ablated_mse": 1.7002287209033966,
+      "delta": -0.03590962290763855
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 2,
+      "ablated_mse": 1.6918380856513977,
+      "delta": -0.04430025815963745
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 3,
+      "ablated_mse": 1.702786922454834,
+      "delta": -0.03335142135620117
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 0,
+      "ablated_mse": 1.7315438389778137,
+      "delta": -0.0045945048332214355
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 1,
+      "ablated_mse": 1.704283207654953,
+      "delta": -0.03185513615608215
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 2,
+      "ablated_mse": 1.7350661158561707,
+      "delta": -0.001072227954864502
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 3,
+      "ablated_mse": 1.722340166568756,
+      "delta": -0.013798177242279053
+    }
+  ]
+}

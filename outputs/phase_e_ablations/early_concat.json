@@ -1,0 +1,182 @@
+{
+  "variant": "early_concat",
+  "baseline_mse": 1.436414748430252,
+  "layer_ablations": [
+    {
+      "module": "encoder.layers.0.self_attn",
+      "ablated_mse": 1.4030632078647614,
+      "delta": -0.03335154056549072
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "ablated_mse": 1.4219556152820587,
+      "delta": -0.01445913314819336
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "ablated_mse": 1.4672626554965973,
+      "delta": 0.030847907066345215
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "ablated_mse": 1.4712123274803162,
+      "delta": 0.03479757905006409
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "ablated_mse": 1.5461354404687881,
+      "delta": 0.10972069203853607
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "ablated_mse": 1.4718151539564133,
+      "delta": 0.035400405526161194
+    }
+  ],
+  "head_ablations": [
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 1.4831918776035309,
+      "delta": 0.04677712917327881
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 1.456130638718605,
+      "delta": 0.019715890288352966
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.4664768874645233,
+      "delta": 0.03006213903427124
+    },
+    {
+      "module": "encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.474612832069397,
+      "delta": 0.0381980836391449
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 0,
+      "ablated_mse": 1.37241792678833,
+      "delta": -0.063996821641922
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 1,
+      "ablated_mse": 1.3208029866218567,
+      "delta": -0.11561176180839539
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 2,
+      "ablated_mse": 1.286130577325821,
+      "delta": -0.15028417110443115
+    },
+    {
+      "module": "encoder.layers.1.self_attn",
+      "head": 3,
+      "ablated_mse": 1.2689033895730972,
+      "delta": -0.16751135885715485
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 0,
+      "ablated_mse": 1.4282602369785309,
+      "delta": -0.008154511451721191
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 1,
+      "ablated_mse": 1.3953895568847656,
+      "delta": -0.04102519154548645
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 2,
+      "ablated_mse": 1.4449537992477417,
+      "delta": 0.008539050817489624
+    },
+    {
+      "module": "encoder.layers.2.self_attn",
+      "head": 3,
+      "ablated_mse": 1.4455618858337402,
+      "delta": 0.00914713740348816
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 0,
+      "ablated_mse": 1.4391705393791199,
+      "delta": 0.002755790948867798
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 1,
+      "ablated_mse": 1.4305558651685715,
+      "delta": -0.005858883261680603
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 2,
+      "ablated_mse": 1.443046659231186,
+      "delta": 0.006631910800933838
+    },
+    {
+      "module": "encoder.layers.3.self_attn",
+      "head": 3,
+      "ablated_mse": 1.437160700559616,
+      "delta": 0.0007459521293640137
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 0,
+      "ablated_mse": 1.4711826592683792,
+      "delta": 0.034767910838127136
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 1,
+      "ablated_mse": 1.4620943367481232,
+      "delta": 0.025679588317871094
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 2,
+      "ablated_mse": 1.4395816177129745,
+      "delta": 0.003166869282722473
+    },
+    {
+      "module": "encoder.layers.4.self_attn",
+      "head": 3,
+      "ablated_mse": 1.4498129189014435,
+      "delta": 0.013398170471191406
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 0,
+      "ablated_mse": 1.437991201877594,
+      "delta": 0.001576453447341919
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 1,
+      "ablated_mse": 1.4303738474845886,
+      "delta": -0.006040900945663452
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 2,
+      "ablated_mse": 1.4393021613359451,
+      "delta": 0.002887412905693054
+    },
+    {
+      "module": "encoder.layers.5.self_attn",
+      "head": 3,
+      "ablated_mse": 1.437653809785843,
+      "delta": 0.0012390613555908203
+    }
+  ]
+}

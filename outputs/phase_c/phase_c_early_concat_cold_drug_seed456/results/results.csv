@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+early_concat,cold_drug,456,1.4377087003062712

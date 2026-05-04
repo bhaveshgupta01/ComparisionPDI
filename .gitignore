@@ -1,1 +1,29 @@
+# Mac
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
 .venv/
+
+# Large raw artifacts (re-derivable from HPC re-runs; not committed to GitHub)
+phase_d_artifacts_deep/
+outputs/phase_e_xl/
+outputs/phase_e1b/
+outputs/phase_e6/
+outputs/test_eval/
+
+# Transfer bundles (intermediate)
+*.tgz
+*.tar.gz
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Local archives
+phase_c_history.tar.gz
+dti_final_push.tar.gz

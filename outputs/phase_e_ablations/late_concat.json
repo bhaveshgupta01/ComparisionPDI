@@ -1,0 +1,66 @@
+{
+  "variant": "late_concat",
+  "baseline_mse": 1.6470689177513123,
+  "layer_ablations": [
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "ablated_mse": 1.5529826879501343,
+      "delta": -0.09408622980117798
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "ablated_mse": 1.6466207802295685,
+      "delta": -0.0004481375217437744
+    }
+  ],
+  "head_ablations": [
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 1.644078403711319,
+      "delta": -0.002990514039993286
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 1.435715526342392,
+      "delta": -0.2113533914089203
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.5299727320671082,
+      "delta": -0.1170961856842041
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.4159391224384308,
+      "delta": -0.23112979531288147
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 1.55264151096344,
+      "delta": -0.09442740678787231
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 1.6175424456596375,
+      "delta": -0.029526472091674805
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.5390510559082031,
+      "delta": -0.10801786184310913
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.4937828481197357,
+      "delta": -0.15328606963157654
+    }
+  ]
+}

@@ -131,37 +131,39 @@ def diagram_03_matrix():
 # DIAGRAM 04 — Architecture diagrams V1-V4
 # =============================================================================
 def diagram_04_architectures():
-    fig, axes = plt.subplots(2, 2, figsize=(13, 10))
+    fig, axes = plt.subplots(2, 2, figsize=(13, 6.4))
     fig.suptitle("Variant Architectures \u2014 same components, different fusion stage",
-                 fontsize=16, weight="bold", y=0.99)
+                 fontsize=19, weight="bold", y=0.995)
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.92, bottom=0.02,
+                        wspace=0.08, hspace=0.04)
 
     def draw_arch(ax, title, color, owner, blocks):
-        ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
-        ax.text(5, 9.6, title, ha="center", fontsize=14, weight="bold", color=color)
-        ax.text(5, 9.15, f"owner: {owner}", ha="center", fontsize=9.5,
+        ax.set_xlim(0, 10); ax.set_ylim(3.25, 10.0); ax.axis("off")
+        ax.text(5, 9.62, title, ha="center", fontsize=17, weight="bold", color=color)
+        ax.text(5, 9.18, f"owner: {owner}", ha="center", fontsize=11.5,
                 style="italic", color="#888")
 
         n = len(blocks)
-        top = 8.3
-        block_h = 1.0
-        gap = 0.5
+        top = 8.55
+        block_h = 1.10
+        gap = 0.22
         total = n * block_h + (n - 1) * gap
-        # If overflow, shrink gap
-        if top - total < 0.2:
-            gap = max(0.2, (top - 0.2 - n * block_h) / max(1, n - 1))
+        if top - total < 3.30:
+            gap = max(0.12, (top - 3.30 - n * block_h) / max(1, n - 1))
             total = n * block_h + (n - 1) * gap
 
         for i, (label, sub, fill) in enumerate(blocks):
             y = top - i * (block_h + gap) - block_h
-            ax.add_patch(FancyBboxPatch((0.6, y), 8.8, block_h,
+            ax.add_patch(FancyBboxPatch((0.3, y), 9.4, block_h,
                                          boxstyle="round,pad=0.02,rounding_size=0.08",
                                          facecolor=fill, edgecolor="#444",
-                                         linewidth=1.4))
-            ax.text(5, y + 0.65, label, ha="center", fontsize=10.5, weight="bold")
-            ax.text(5, y + 0.25, sub, ha="center", fontsize=8.5, color="#555")
+                                         linewidth=1.7))
+            ax.text(5, y + 0.72, label, ha="center", fontsize=13.5, weight="bold")
+            ax.text(5, y + 0.28, sub, ha="center", fontsize=11, color="#555")
             if i < n - 1:
-                ax.annotate("", xy=(5, y + block_h + 0.05), xytext=(5, y + block_h + gap - 0.05),
-                            arrowprops=dict(arrowstyle="->", color="#666", lw=1.4))
+                ax.annotate("", xy=(5, y + block_h + 0.02),
+                            xytext=(5, y + block_h + gap - 0.02),
+                            arrowprops=dict(arrowstyle="->", color="#666", lw=1.8))
 
     # V1 — Early Concat
     draw_arch(axes[0, 0], "V1  Early Concat", COL["V1"], "Lingwei", [
@@ -197,7 +199,6 @@ def diagram_04_architectures():
         ("MLP Head", "scalar pKi", "#dcfce7"),
     ])
 
-    plt.tight_layout()
     save(fig, "diagram_04_architectures")
 
 
@@ -1513,12 +1514,13 @@ def _load_bindingdb_arrays():
 
 def diagram_06_dataset_summary():
     s = _load_bindingdb_summary()
-    fig, ax = plt.subplots(figsize=(9.5, 5.5))
-    ax.set_xlim(0, 12); ax.set_ylim(0, 8); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(10, 3.0))
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
+    ax.set_xlim(0, 12); ax.set_ylim(0, 5.0); ax.axis("off")
 
-    ax.text(6, 7.4, "BindingDB PDSPKi  -  Dataset at a Glance",
-            ha="center", fontsize=15, weight="bold", color="#222")
-    ax.text(6, 6.85,
+    ax.text(6, 4.65, "BindingDB PDSPKi  -  Dataset at a Glance",
+            ha="center", fontsize=16, weight="bold", color="#222")
+    ax.text(6, 4.18,
             f"{s['n_kept']:,} drug-protein pairs  /  {s['n_unique_targets']} unique targets  "
             f"/  Ki measurements -> pKi target",
             ha="center", fontsize=11, color="#555")
@@ -1541,32 +1543,30 @@ def diagram_06_dataset_summary():
          f"{s['n_kinase_targets']} kinases ({100*s['n_kinase_targets']/max(s['n_unique_targets'],1):.1f}%)",
          "#fbcfe8", "#831843"),
     ]
-    card_w = 2.6
-    card_h = 2.6
-    gap = 0.3
+    card_w = 2.7
+    card_h = 2.35
+    gap = 0.22
     total_w = 4 * card_w + 3 * gap
     x_start = (12 - total_w) / 2
+    card_y = 0.82
 
     for i, (title, big, sub, fill, edge) in enumerate(cards):
         x = x_start + i * (card_w + gap)
         ax.add_patch(FancyBboxPatch(
-            (x, 2.2), card_w, card_h,
+            (x, card_y), card_w, card_h,
             boxstyle="round,pad=0.04,rounding_size=0.18",
             facecolor=fill, edgecolor=edge, linewidth=1.6))
-        ax.text(x + card_w/2, 2.2 + card_h - 0.42, title,
-                ha="center", fontsize=10.5, weight="bold", color=edge)
-        ax.text(x + card_w/2, 2.2 + card_h/2 + 0.05, big,
-                ha="center", fontsize=15, weight="bold", color="#111")
-        ax.text(x + card_w/2, 2.2 + 0.5, sub,
-                ha="center", fontsize=9, color="#444")
+        ax.text(x + card_w/2, card_y + card_h - 0.38, title,
+                ha="center", fontsize=11.5, weight="bold", color=edge)
+        ax.text(x + card_w/2, card_y + card_h/2 + 0.02, big,
+                ha="center", fontsize=18, weight="bold", color="#111")
+        ax.text(x + card_w/2, card_y + 0.40, sub,
+                ha="center", fontsize=10, color="#444")
 
-    ax.text(6, 1.3,
-            "Length caps used in training: drug <= 100 SMILES tokens  /  protein <= 1,200 residues",
+    ax.text(6, 0.42,
+            "Caps in training: drug <= 100 SMILES tokens, protein <= 1,200 residues  "
+            "(covers ~75% of drugs, ~70% of proteins; longer truncated)",
             ha="center", fontsize=9.5, color="#666", style="italic")
-    ax.text(6, 0.8,
-            f"Caps cover ~75% of drugs (median 45) and ~70% of proteins (median 444); "
-            "longer sequences are truncated.",
-            ha="center", fontsize=9, color="#666", style="italic")
 
     save(fig, "diagram_06_dataset_summary")
 
