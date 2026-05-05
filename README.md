@@ -147,18 +147,6 @@ python3 scripts/e5_mask_aware_entropy.py        # Fig 6 + FINDINGS_E5.md
 4. **All `FINDINGS_*.md`** — these are the numerical "punchlines" for each result. If you want to verify a number in the paper, this is where it came from. Each was auto-generated from a committed CSV.
 5. **`POSTER.md`** — the April 29 poster session content. The narrative flow is similar (we did the poster *before* the E1 reversal landed, so the poster's framing is "fusion stage matters more than mechanism" while the paper's framing is "width-specific phase transition" — the latter is more accurate but the poster's structure is reusable for the paper's introduction and motivation).
 
-**Suggested writing assignment split:**
-
-| Section | Suggested writer | Source materials |
-|---|---|---|
-| §1 Intro + Motivation | Lingwei | `PAPER_DRAFT.md` §1 + `PAPER_SECTION_1_INTRO.md` + the COVID/transformer narrative in this README |
-| §2 Method | Tenzin (scaffolding owner) | `PAPER_DRAFT.md` §2 + `PAPER_SECTION_2_METHOD.md` + `TECHNICAL_SPECIFICATION.md` |
-| §3 Results | Bhavesh (analysis lead) | `PAPER_DRAFT.md` §3 + all `FINDINGS_*.md` files |
-| §4 Discussion | Manas | `PAPER_DRAFT.md` §4 + `FINDINGS_E4.md` + `FINDINGS_CKA.md` for the mechanistic story |
-| §5 Limitations + §6 Conclusion + References | whoever, ~1 hour | `PAPER_DRAFT.md` §5 / §6 |
-
-Once your section is drafted, paste the consolidated text into `paper.tex` and converge on a final pass together.
-
 ---
 
 ## Key contacts
