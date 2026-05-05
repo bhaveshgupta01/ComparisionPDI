@@ -6,16 +6,11 @@
 
 ## Top-level documents (root)
 
-### Paper / writing handoff (NEW, 2026-05-03)
+### Paper / writing handoff
 
 | File | Purpose |
 |---|---|
-| [PAPER_DRAFT.md](PAPER_DRAFT.md) | **Consolidated 6-page paper draft.** Single document combining all sections (intro → method → results → discussion → limitations → conclusion → references). The team's primary writing target — paste sections into LaTeX from here. |
-| [PAPER_OUTLINE.md](PAPER_OUTLINE.md) | High-level paper outline with section length budgets, figure inventory, table inventory, and submission strategy. Use as a planning document. |
-| [PAPER_SECTION_1_INTRO.md](PAPER_SECTION_1_INTRO.md) | Longer, alternative draft of the introduction. Use if you want different phrasing options. |
-| [PAPER_SECTION_2_METHOD.md](PAPER_SECTION_2_METHOD.md) | Longer, alternative draft of the method section. |
-| [PAPER_SECTION_3_RESULTS.md](PAPER_SECTION_3_RESULTS.md) | Longer, alternative draft of the results section. Has more `[PENDING:...]` markers — use the consolidated PAPER_DRAFT.md for the up-to-date versions. |
-| [PAPER_SECTION_4_5_6.md](PAPER_SECTION_4_5_6.md) | Discussion + limitations + conclusion + references skeleton. |
+| [PAPER_DRAFT.md](PAPER_DRAFT.md) | **Consolidated 6-page paper draft.** Single canonical document combining all sections (intro → method → results → discussion → limitations → conclusion → references). The team's primary writing target — paste sections into LaTeX from here. |
 
 ### Findings (numerical results, paper-citable)
 
@@ -46,11 +41,6 @@ Aggregated from `outputs/<phase>/*/results/results.csv` by the build scripts.
 
 | File | Purpose |
 |---|---|
-| [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) | High-level project perspective. Older than the paper draft — phase-status info is partially out-of-date but architecture descriptions and design decisions are still authoritative. |
-| [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md) | Master engineering documentation. |
-| [TECHNICAL_SPECIFICATION.md](TECHNICAL_SPECIFICATION.md) | Detailed engineering spec — useful when writing the §2 Method section. |
-| [TEAM_BLUEPRINT.md](TEAM_BLUEPRINT.md) | Team conventions, locked vs free hyperparameters. |
-| [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md) | Daily-async workflow, branching conventions. |
 | [ML_Project_Proposal.pdf](ML_Project_Proposal.pdf) | Original project proposal (April 3). |
 | [POSTER.md](POSTER.md) | Original poster session content (April 29). The narrative is reusable for the paper's introduction; some claims (e.g. "fusion stage > mechanism") are superseded by the post-poster Phase E1 reversal finding. |
 | [poster.pdf](poster.pdf) / [poster.tex](poster.tex) | Compiled poster artifacts. |
@@ -200,25 +190,30 @@ Plus dozens of intermediate / poster-version figures retained for archival.
 
 ---
 
-## Removed (cleanup, 2026-05-03)
+## Removed (cleanup history)
 
-The following process-tracking documents were removed during repo finalization. They served as workflow notes during execution but are no longer relevant for paper writing:
-
+### 2026-05-03 — initial finalization
 - `HPC_*.md` (9 files) — step-by-step execution logs for HPC dispatches.
-- `CONTEXT_FOR_NEXT_CHAT.md` — chat-handoff context.
-- `CLEANUP_AT_END.md` — placeholder for this very cleanup task.
-- `INDEX.md` — superseded by this REPO_GUIDE.md.
-- `GAMEPLAN.md` — original 6-week plan (now executed).
-- `DEEP_ANALYSIS_PLAYBOOK.md` — pre-execution planning doc.
+- `CONTEXT_FOR_NEXT_CHAT.md`, `CLEANUP_AT_END.md`, `INDEX.md`.
+- `GAMEPLAN.md`, `DEEP_ANALYSIS_PLAYBOOK.md` — pre-execution planning docs.
 - `PHASE_B_DECISION.md` / `PHASE_B_MEETING_AGENDA.md` — Phase B was locked April 28.
 - `POSTER_LATEX_BRIEF.md` / `POSTER_TALK.md` — poster-session speaking notes.
 - `FINDINGS.md` (Phase C only) / `FINDINGS_DEEP.md` (early Phase D) — superseded by `FINDINGS_E1.md` / `FINDINGS_E4.md`.
 - `phase_d_artifacts/`, `phase_d_summaries/`, `branch_docs/` — older artifact directories superseded by `phase_d_artifacts_deep/`.
 - `*.tgz` — transfer bundles used during HPC scp; not deliverables.
-- LaTeX build artifacts (`poster.aux`, `poster.log`).
-- Poster export PNGs at intermediate stages (`poster_q*.png`, `poster_top.png`, etc.). The deliverable is `poster.pdf`.
+- LaTeX build artifacts and intermediate poster PNGs.
 
-If a teammate needs any of these for context, they can be recovered from git history.
+### 2026-05-05 — markdown deduplication
+- `PAPER_OUTLINE.md` — duplicates structure already in `PAPER_DRAFT.md`.
+- `PAPER_SECTION_{1_INTRO, 2_METHOD, 3_RESULTS, 4_5_6}.md` (4 files) — alternative section drafts; the canonical text is in `PAPER_DRAFT.md`.
+- `PHASE_E_FULL_SCALE.md` — Phase E execution plan; all phases are now complete.
+- `implementation_plan_claude.md` — early planning doc, no longer paper-relevant.
+- `PROJECT_DOCUMENTATION.md` — 51 KB master engineering doc; key content distributed across `PAPER_DRAFT.md` and `REPO_GUIDE.md`.
+- `PROJECT_OVERVIEW.md` — duplicates the project narrative already in `README.md`.
+- `TEAM_BLUEPRINT.md` / `TEAM_WORKFLOW.md` — team-process artifacts; not relevant to paper writing.
+- `TECHNICAL_SPECIFICATION.md` — engineering spec; key technical content is in `PAPER_DRAFT.md` §2.
+
+If a teammate needs any of these for context, they can be recovered from git history (`git log -- <file>` then `git show <SHA>:<file>`).
 
 ---
 

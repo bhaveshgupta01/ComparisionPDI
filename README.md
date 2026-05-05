@@ -44,16 +44,9 @@ DTI_MLFinalProject/
 ├── README.md                      ← this file (start here)
 ├── REPO_GUIDE.md                  ← detailed file inventory + paths
 ├── PAPER_DRAFT.md                 ← consolidated 6-page paper draft (handoff to writers)
-├── PAPER_OUTLINE.md               ← high-level outline + figure inventory
-├── PAPER_SECTION_*.md             ← longer per-section drafts (alt source material)
 ├── POSTER.md                      ← original poster session content
 ├── poster.pdf, poster.tex         ← compiled poster (April 29 session)
 ├── ML_Project_Proposal.pdf        ← original proposal
-├── PROJECT_OVERVIEW.md            ← high-level perspective doc
-├── PROJECT_DOCUMENTATION.md       ← master engineering doc
-├── TECHNICAL_SPECIFICATION.md     ← engineering spec
-├── TEAM_BLUEPRINT.md              ← team conventions
-├── TEAM_WORKFLOW.md               ← team workflow doc
 │
 │ ── Findings (numerical results) ────────────────────────────────
 ├── FINDINGS_E1.md                 ← scale-dependent reversal (d=128 vs d=256)
@@ -141,11 +134,10 @@ python3 scripts/e5_mask_aware_entropy.py        # Fig 6 + FINDINGS_E5.md
 
 **You'll want these files, in order:**
 
-1. **`PAPER_DRAFT.md`** — the consolidated draft. Sections 1-6 with all numbers, tables, and figure references plugged in. Most of your work is prose polish + LaTeX conversion.
-2. **`PAPER_OUTLINE.md`** — figure-by-figure inventory and section structure.
-3. **Section drafts** (`PAPER_SECTION_*.md`) — longer, looser drafts for each section if you want alternative phrasing to pull from.
-4. **All `FINDINGS_*.md`** — these are the numerical "punchlines" for each result. If you want to verify a number in the paper, this is where it came from. Each was auto-generated from a committed CSV.
-5. **`POSTER.md`** — the April 29 poster session content. The narrative flow is similar (we did the poster *before* the E1 reversal landed, so the poster's framing is "fusion stage matters more than mechanism" while the paper's framing is "width-specific phase transition" — the latter is more accurate but the poster's structure is reusable for the paper's introduction and motivation).
+1. **`PAPER_DRAFT.md`** — the consolidated draft. Sections 1-6 with all numbers, tables, and figure references plugged in. **This is the canonical writing target** — most of the work from here is prose polish + LaTeX conversion.
+2. **All `FINDINGS_*.md`** (E1, E4, E5, E6, CKA, capacity, significance) — numerical "punchlines" for each result. If you want to verify a number in the paper, this is where it came from. Each is auto-generated from a committed CSV.
+3. **`REPO_GUIDE.md`** — detailed file inventory and where every artifact lives.
+4. **`POSTER.md`** — the April 29 poster session content. The narrative flow is similar (the poster was assembled *before* the E1 reversal landed, so its framing — "fusion stage matters more than mechanism" — is superseded by the paper's "width-specific phase transition." The poster's introduction structure is still reusable for the paper's motivation.)
 
 ---
 
