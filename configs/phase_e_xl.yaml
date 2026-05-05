@@ -1,0 +1,72 @@
+# =============================================================================
+# Phase E1 — XL Config (Full-Scale Re-Run)
+# =============================================================================
+# Goal: re-establish all Phase C findings on a model big enough that nobody can
+# dismiss them as "small-model artifacts". Same controlled-comparison design,
+# same dataset, same splits, same seeds — bigger model.
+#
+# What changes vs phase_c_fair.yaml (REVISED 2026-04-30 after first smoke OOM'd at d=256+n_layers=12+bs=32):
+#   d_model:    128 -> 256                  (width doubled)
+#   n_heads:    4   -> 8                    (heads doubled, d_head=32 preserved)
+#   n_layers:   6 (V1/V2 shared)  unchanged  (was going to 12, but attention OOM at d=256+h=8+1300-tok seq)
+#   n_layers:   3 (V3/V4 per side) unchanged
+#   d_ff:       512 -> 1024 (4x d_model preserved)
+#   head_hidden:256 -> 512
+#   batch_size: 64  -> 32 (h=8 + 1300-tok seq is 4x more attn memory than Phase C; bs=32 needed)
+#   epochs:     30  -> 45 (more capacity, but not 60; saves wallclock)
+#   seeds:      3   -> 5 (42, 123, 456, 789, 2024) for stronger error bars
+#
+# Story: this is a *width-doubling* scale-up; depth held to keep apples-to-apples.
+# A separate follow-up Phase E1b can probe depth in isolation if E1 confirms ranking.
+#
+# Param budget (estimated):
+#   V1 Early Concat   ~ 4.8M params (vs 1.27M at d=128)
+#   V2 Early X-Attn   ~ 5.2M params
+#   V3 Late X-Attn    ~ 5.2M params
+#   V4 Late Concat    ~ 4.5M params
+#
+# Compute (per A100 estimate):
+#   ~50-70 min per run on full BindingDB.
+#   60 runs (4 variants x 3 splits x 5 seeds) = ~55-70 GPU-hours total.
+#   Wall-clock with concurrent A100s: ~5-7 hours.
+# =============================================================================
+
+# Architecture (all variants share)
+d_model: 256
+n_heads: 8
+d_ff: 1024
+head_hidden: 512
+head_dropout: 0.2
+
+# Per-variant n_layers (held at Phase C levels; cf. comment block above)
+n_layers_shared: 6        # V1, V2
+n_layers_per_side: 3      # V3, V4 (so 3+3=6 total transformer blocks)
+
+# Optimization
+batch_size: 32            # halved from Phase C bs=64 because h=8 doubles attention memory
+lr: 3.0e-4
+dropout: 0.1
+weight_decay: 0.01
+warmup_steps: 1000
+optimizer: adamw
+lr_schedule: cosine
+
+# Training duration
+epochs: 45
+early_stopping_patience: 8
+val_every_epoch: 1
+
+# Data
+dataset: bindingdb_pdspki
+max_rows: null            # full BindingDB Ki
+max_drug_len: 100
+max_prot_len: 1200
+
+# Sweep dimensions
+seeds: [42, 123, 456, 789, 2024]
+splits: [random, cold_drug, cold_target]
+variants: [early_concat, early_crossattn, late_crossattn, late_concat]
+
+# Reproducibility
+deterministic: true
+cudnn_benchmark: false

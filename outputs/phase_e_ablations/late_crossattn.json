@@ -1,0 +1,124 @@
+{
+  "variant": "late_crossattn",
+  "baseline_mse": 1.9741803705692291,
+  "layer_ablations": [
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "ablated_mse": 1.4696225374937057,
+      "delta": -0.5045578330755234
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "ablated_mse": 1.920835703611374,
+      "delta": -0.053344666957855225
+    },
+    {
+      "module": "cross_attn_layers.0.drug_attends_protein",
+      "ablated_mse": 2.350696623325348,
+      "delta": 0.3765162527561188
+    },
+    {
+      "module": "cross_attn_layers.0.protein_attends_drug",
+      "ablated_mse": 1.5101271271705627,
+      "delta": -0.4640532433986664
+    }
+  ],
+  "head_ablations": [
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 1.527555227279663,
+      "delta": -0.44662514328956604
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 1.9995033740997314,
+      "delta": 0.02532300353050232
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.5152129828929901,
+      "delta": -0.458967387676239
+    },
+    {
+      "module": "drug_encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.7180536091327667,
+      "delta": -0.2561267614364624
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 0,
+      "ablated_mse": 2.042200654745102,
+      "delta": 0.0680202841758728
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 1,
+      "ablated_mse": 2.002070814371109,
+      "delta": 0.027890443801879883
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 2,
+      "ablated_mse": 1.8750515282154083,
+      "delta": -0.0991288423538208
+    },
+    {
+      "module": "prot_encoder.layers.0.self_attn",
+      "head": 3,
+      "ablated_mse": 1.878259390592575,
+      "delta": -0.09592097997665405
+    },
+    {
+      "module": "cross_attn_layers.0.drug_attends_protein",
+      "head": 0,
+      "ablated_mse": 1.935974359512329,
+      "delta": -0.038206011056900024
+    },
+    {
+      "module": "cross_attn_layers.0.drug_attends_protein",
+      "head": 1,
+      "ablated_mse": 1.8489457070827484,
+      "delta": -0.1252346634864807
+    },
+    {
+      "module": "cross_attn_layers.0.drug_attends_protein",
+      "head": 2,
+      "ablated_mse": 2.2810694575309753,
+      "delta": 0.3068890869617462
+    },
+    {
+      "module": "cross_attn_layers.0.drug_attends_protein",
+      "head": 3,
+      "ablated_mse": 1.9888075590133667,
+      "delta": 0.014627188444137573
+    },
+    {
+      "module": "cross_attn_layers.0.protein_attends_drug",
+      "head": 0,
+      "ablated_mse": 1.6137110590934753,
+      "delta": -0.3604693114757538
+    },
+    {
+      "module": "cross_attn_layers.0.protein_attends_drug",
+      "head": 1,
+      "ablated_mse": 1.6367660462856293,
+      "delta": -0.33741432428359985
+    },
+    {
+      "module": "cross_attn_layers.0.protein_attends_drug",
+      "head": 2,
+      "ablated_mse": 1.6418258249759674,
+      "delta": -0.3323545455932617
+    },
+    {
+      "module": "cross_attn_layers.0.protein_attends_drug",
+      "head": 3,
+      "ablated_mse": 1.6518949270248413,
+      "delta": -0.3222854435443878
+    }
+  ]
+}

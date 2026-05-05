@@ -1,10 +1,17 @@
 #!/bin/bash
+# =============================================================================
+# Phase C — Final Controlled Runs
+# Submit:  sbatch run_phase_c.sbatch <variant> <split> <seed>
+# Examples:
+#   sbatch run_phase_c.sbatch early_concat    random      42
+#   sbatch run_phase_c.sbatch late_crossattn  cold_drug   123
+# =============================================================================
 #SBATCH --account=csci_ga_2565-2026sp
 #SBATCH --partition=c12m85-a100-1
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=8
-#SBATCH --time=1:30:00
+#SBATCH --time=1:00:00
 #SBATCH --mem=32GB
 #SBATCH --gres=gpu:1
 #SBATCH --job-name=phase-c
@@ -17,6 +24,7 @@ VARIANT="${1:?usage: sbatch run_phase_c.sbatch <variant> <split> <seed>}"
 SPLIT="${2:?missing split}"
 SEED="${3:?missing seed}"
 
+# Per-variant n_layers (V1/V2 use shared 6; V3/V4 use 3 per side)
 case "$VARIANT" in
     early_concat|early_crossattn) NLAYERS=6 ;;
     late_crossattn|late_concat)   NLAYERS=3 ;;
@@ -42,6 +50,7 @@ echo "n_layers: $NLAYERS"
 echo "Tag:      $TAG"
 echo "============================================="
 
+# Train with the locked Phase C "fair config"
 python scripts/train.py \
     --variant   "$VARIANT" \
     --split     "$SPLIT" \

@@ -1,0 +1,2 @@
+variant,split,seed,best_val_mse
+early_concat,cold_target,42,1.1694120909769954

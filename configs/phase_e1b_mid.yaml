@@ -1,0 +1,53 @@
+# =============================================================================
+# Phase E1b — Mid-scale probe (d=192)
+# =============================================================================
+# Purpose: bracket the phase transition between Phase C (d=128, early-fusion wins)
+# and Phase E1 (d=256, late-fusion wins). A single intermediate point tells us
+# whether the transition is sharp or gradual.
+#
+# Same fair-config protocol as Phase C / E1, only d_model + n_heads change.
+# Depth held at Phase C levels (n_layers=6 V1/V2, 3 per side V3/V4).
+# 3 seeds (vs E1's 5) — enough to bracket; mean ± std with 3 seeds is fine for
+# a plot point, the headline runs are still E1's.
+#
+# Compute: ~30-40 min/run on A100. 36 runs = ~20-25 GPU-hours.
+# =============================================================================
+
+# Architecture
+d_model: 192
+n_heads: 6                # 192 / 32 = 6 — preserve d_head=32 (matches Phase C and E1)
+d_ff: 768                 # 4x d_model
+head_hidden: 384          # 2x d_model
+head_dropout: 0.2
+
+# Per-variant n_layers (held at Phase C levels)
+n_layers_shared: 6
+n_layers_per_side: 3
+
+# Optimization
+batch_size: 32
+lr: 3.0e-4
+dropout: 0.1
+weight_decay: 0.01
+warmup_steps: 750
+optimizer: adamw
+lr_schedule: cosine
+
+# Training duration
+epochs: 45
+early_stopping_patience: 8
+val_every_epoch: 1
+
+# Data
+dataset: bindingdb_pdspki
+max_rows: null
+max_drug_len: 100
+max_prot_len: 1200
+
+# Sweep dimensions (3 seeds — bracketing point, not headline)
+seeds: [42, 123, 456]
+splits: [random, cold_drug, cold_target]
+variants: [early_concat, early_crossattn, late_crossattn, late_concat]
+
+deterministic: true
+cudnn_benchmark: false

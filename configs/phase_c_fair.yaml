@@ -1,11 +1,36 @@
-# Phase C "Fair Config" - locked 2026-04-28 (Bhavesh, soloing Phase B)
+# =============================================================================
+# Phase C "Fair Config" — locked 2026-04-28 (Bhavesh, soloing Phase B)
+# =============================================================================
+# This is THE config every Phase C run uses. The only things that vary across
+# the 36 runs are: variant (V1/V2/V3/V4), split (random/cold_drug/cold_target),
+# and seed (42/123/456).
+#
+# Rationale (from Phase A 4-variant comparison, see PHASE_A_4VARIANT_COMPARISON.csv):
+#   - lr=3e-4 wins for 3 of 4 variants (V1: 1.50, V2: 1.47, V3: 1.43, V4: 1.44).
+#   - d_model=128 is the only value all 4 ran cleanly (256 OOMs cross-attn at bs=64).
+#   - batch=64 is everyone's default; bs=32 is the OOM fallback.
+#   - h=4 is the only value all 4 ran cleanly (h=8 needs bs=32 for cross-attn).
+#   - dropout=0.1 only — 0.2/0.3 broke V1 (do=0.3 -> MSE 2.36).
+#   - V1/V2 use n_layers=6 shared encoder. V3/V4 use n_layers=3 PER SIDE
+#     (so V3/V4 have 3+3=6 total transformer blocks, comparable to V1/V2).
+#   - Full BindingDB Ki (~52k pairs), 30 epochs, AdamW + cosine + 500-step warmup.
+#
+# Compute: ~25-35 min per run on A100 single. 36 runs ~= 15-20 GPU-hours.
+# Budget left: ~280 GPU-hours. Comfortable.
+# =============================================================================
+
+# Architecture (all variants share)
 d_model: 128
 n_heads: 4
-d_ff: 512
+d_ff: 512                 # 4 * d_model
 head_hidden: 256
 head_dropout: 0.2
-n_layers_shared: 6        # V1, V2 use a 6-layer shared encoder
-n_layers_per_side: 3      # V3, V4 use 3 per side (3+3 total = 6)
+
+# Per-variant n_layers  (interpretation differs)
+n_layers_shared: 6        # V1, V2 — total layers in the shared encoder
+n_layers_per_side: 3      # V3, V4 — per-modality encoder depth
+
+# Optimization
 batch_size: 64
 lr: 3.0e-4
 dropout: 0.1
@@ -13,15 +38,23 @@ weight_decay: 0.01
 warmup_steps: 500
 optimizer: adamw
 lr_schedule: cosine
+
+# Training duration
 epochs: 30
 early_stopping_patience: 5
 val_every_epoch: 1
+
+# Data
 dataset: bindingdb_pdspki
-max_rows: null
+max_rows: null            # null -> use full BindingDB Ki
 max_drug_len: 100
 max_prot_len: 1200
+
+# Sweep dimensions (these are the only things that vary across the 36 runs)
 seeds: [42, 123, 456]
 splits: [random, cold_drug, cold_target]
 variants: [early_concat, early_crossattn, late_crossattn, late_concat]
+
+# Reproducibility
 deterministic: true
 cudnn_benchmark: false
